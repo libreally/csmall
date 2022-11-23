@@ -1,4 +1,4 @@
-package cn.tedu.csmall.stock.config;
+package cn.tedu.csmall.stock.webapi.config;
 
 import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class Knife4jConfiguration {
     /**
      * 【重要】指定Controller包路径
      */
-    private String basePackage = "cn.tedu.csmall.stock.controller";
+    private String basePackage = "cn.tedu.csmall.stock.webapi.controller";
     /**
      * 分组名称
      */

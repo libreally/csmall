@@ -1,11 +1,11 @@
-package cn.tedu.csmall.stock.service.impl;
+package cn.tedu.csmall.stock.webapi.service.impl;
 
 
 import cn.tedu.csmall.commons.exception.CoolSharkServiceException;
 import cn.tedu.csmall.commons.pojo.stock.dto.StockReduceCountDTO;
 import cn.tedu.csmall.commons.restful.ResponseCode;
-import cn.tedu.csmall.stock.mapper.StockMapper;
 import cn.tedu.csmall.stock.service.IStockService;
+import cn.tedu.csmall.stock.webapi.mapper.StockMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

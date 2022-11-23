@@ -1,4 +1,4 @@
-package cn.tedu.csmall.stock.mapper;
+package cn.tedu.csmall.stock.webapi.mapper;
 
 
 import org.apache.ibatis.annotations.Param;

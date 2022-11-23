@@ -13,3 +13,7 @@ dubbo:
   protocol:
     port: -1
     name: dubbo
+  registry:
+    address: nacos://localhost:8848
+  consumer:
+    check: false
