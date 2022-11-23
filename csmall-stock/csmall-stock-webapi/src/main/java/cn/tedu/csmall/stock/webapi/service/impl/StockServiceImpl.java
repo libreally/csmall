@@ -7,11 +7,13 @@ import cn.tedu.csmall.commons.restful.ResponseCode;
 import cn.tedu.csmall.stock.service.IStockService;
 import cn.tedu.csmall.stock.webapi.mapper.StockMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@DubboService
 public class StockServiceImpl implements IStockService {
 
     @Autowired
