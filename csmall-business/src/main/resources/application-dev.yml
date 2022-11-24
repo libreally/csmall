@@ -9,4 +9,18 @@ spring:
         server-addr: localhost:8848
         #设置项目在nacos中存在的时间 true临时  false永久
         #ephemeral: true
-
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://localhost:8848
+  consumer:
+    check: false
+seata:
+  tx-service-group: csmall_group
+  service:
+    vgroup-mapping:
+      csmall_group: default
+    grouplist:
+      default: localhost:8091

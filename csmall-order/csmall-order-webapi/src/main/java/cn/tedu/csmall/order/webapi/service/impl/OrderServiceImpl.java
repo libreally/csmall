@@ -1,9 +1,11 @@
 package cn.tedu.csmall.order.webapi.service.impl;
 
 import cn.tedu.csmall.cart.service.ICartService;
+import cn.tedu.csmall.commons.exception.CoolSharkServiceException;
 import cn.tedu.csmall.commons.pojo.order.dto.OrderAddDTO;
 import cn.tedu.csmall.commons.pojo.order.model.Order;
 import cn.tedu.csmall.commons.pojo.stock.dto.StockReduceCountDTO;
+import cn.tedu.csmall.commons.restful.ResponseCode;
 import cn.tedu.csmall.order.service.IOrderService;
 import cn.tedu.csmall.order.webapi.mapper.OrderMapper;
 import cn.tedu.csmall.stock.service.IStockService;
@@ -42,6 +44,9 @@ public class OrderServiceImpl implements IOrderService {
         //从购物车中删除用户勾选的模块cart模块
         cartService.deleteUserCart(orderAddDTO.getUserId(),orderAddDTO.getCommodityCode());
 
+        if (Math.random()<0.5){
+            throw new CoolSharkServiceException(ResponseCode.INTERNAL_SERVER_ERROR,"发生随机异常");
+        }
         log.debug("新增订单");
         //新增订单
         Order order = new Order();

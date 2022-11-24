@@ -2,6 +2,11 @@ spring:
   application:
     name: nacos-stock # 定义当前服务名称
   cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        #限流端口号，每个项目端口号必须不同
+        port: 8021
     nacos:
       discovery:
         server-addr: localhost:8848 # 指定正在运行的Nacos服务器的位置
@@ -17,3 +22,10 @@ dubbo:
     address: nacos://localhost:8848
   consumer:
     check: false
+seata:
+  tx-service-group: csmall_group
+  service:
+    vgroup-mapping:
+      csmall_group: default
+    grouplist:
+      default: localhost:8091

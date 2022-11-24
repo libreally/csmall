@@ -32,5 +32,20 @@
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 		</dependency>
+		<!--  Dubbo依赖 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-dubbo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cn.tedu</groupId>
+			<artifactId>csmall-order-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!--   Seata和SpringBoot整合依赖     -->
+		<dependency>
+			<groupId>io.seata</groupId>
+			<artifactId>seata-spring-boot-starter</artifactId>
+		</dependency>
 	</dependencies>
 </project>
