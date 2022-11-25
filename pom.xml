@@ -22,6 +22,7 @@
         <module>csmall-business</module>
         <module>csmall-cart</module>
         <module>csmall-order</module>
+        <module>gateway</module>
     </modules>
     <!--设置版本号-->
     <properties>
