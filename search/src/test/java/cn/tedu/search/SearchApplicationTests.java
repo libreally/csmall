@@ -5,6 +5,8 @@ import cn.tedu.search.repository.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,4 +78,31 @@ class SearchApplicationTests {
                 .queryItemByTitleMatchesAndBrandMatches("游戏","罗技");
         items.forEach(System.out::println);
     }
+    //多条件自定义排序查询
+    @Test
+    void querySort(){
+        // SpringData框架提供的全查ES中对应实体类所有数据的方法
+        Iterable<Item> items = itemRepository
+                .queryItemsByTitleMatchesOrBrandMatchesOrderByPriceDesc("游戏","罗技");
+        items.forEach(System.out::println);
+    }
+    // 自定义分页查询
+    @Test
+    void queryPage(){
+        int page=1;                 // 设置要查询的页码 1表示查询第一页
+        int pageSize=2;             // 每页条数的设置
+        Page<Item> pages=itemRepository
+                .queryItemsByTitleMatchesOrBrandMatchesOrderByPriceDesc(
+                        "游戏","罗技", PageRequest.of(page-1,pageSize));
+        pages.forEach(System.out::println);
+        // pages对象包含的分页信息输出
+        System.out.println("总页数:"+pages.getTotalPages());
+        System.out.println("总条数:"+pages.getTotalElements());
+        System.out.println("当前页:"+(pages.getNumber()+1));
+        System.out.println("每页条数:"+pages.getSize());
+        System.out.println("是否是首页:"+pages.isFirst());
+        System.out.println("是否是末页:"+pages.isLast());
+
+    }
+
 }

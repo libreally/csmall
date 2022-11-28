@@ -1,6 +1,8 @@
 package cn.tedu.search.repository;
 
 import cn.tedu.search.entity.Item;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
@@ -38,5 +40,13 @@ public interface ItemRepository extends ElasticsearchRepository<Item, Long> {
     * 排序查询
     *
     */
-    Iterable<Item> queryItemsByTitleMatchesOrBrandMatchesOrderByPrice(String title,String brand);
+    Iterable<Item> queryItemsByTitleMatchesOrBrandMatchesOrderByPriceDesc(String title,String brand);
+
+    // 分页查询
+    // 返回值类型需要修改为Page类型,这个类型既可以保存从ES中查询出的数据
+    // 又可以保存当前分页查询的分页信息例如:当前页码,每页条数,总条数,总页数,有没有上一页,有没有下一页等
+    // 参数方面,需要在参数列表末尾添加一个Pageable类型的参数
+    // 这个类型的对象包含要查询的页码和每页的条数
+    Page<Item> queryItemsByTitleMatchesOrBrandMatchesOrderByPriceDesc(String title, String brand, Pageable pageable);
+
 }
