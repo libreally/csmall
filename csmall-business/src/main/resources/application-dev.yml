@@ -3,6 +3,12 @@ spring:
     #设置当前项目名称，提交到nacos，注册为当前微服务名称
     name: nacos-business
   cloud:
+    sentinel:
+      transport:
+        # 配置sentinel提供的仪表台服务器的位置
+        dashboard: localhost:8080
+        # 执行限流的端口号,每个项目必须设置不同的端口号,例如cart模块要限流就可以设置为8722
+        port: 8722
     nacos:
       discovery:
         #配置nacos的位置，用于提交当前项目信息
