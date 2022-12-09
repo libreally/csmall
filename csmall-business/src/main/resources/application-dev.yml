@@ -1,4 +1,11 @@
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # 设置虚拟host,单机模式时固定编写 "/" 即可
+    virtual-host: /
   application:
     #设置当前项目名称，提交到nacos，注册为当前微服务名称
     name: nacos-business

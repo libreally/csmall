@@ -39,7 +39,7 @@ public class Knife4jConfiguration {
     /**
      * 简介
      */
-    private String description = "构建基础stock-web项目,实现订单管理";
+    private String description = "构建基础stock-web项目,实现库存管理";
     /**
      * 服务条款URL
      */

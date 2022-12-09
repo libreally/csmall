@@ -12,7 +12,7 @@
     <artifactId>csmall-stock-webapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>csmall-stock-webapi</name>
-    <description>csmall-stock-webapi</description>
+    <description>Demo project for Spring Boot</description>
     <dependencies>
         <!--web实例-->
         <dependency>
@@ -50,12 +50,13 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--Dubbo注册依赖-->
+        <!--  Dubbo 在SpringCloud中使用的依赖 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-dubbo</artifactId>
         </dependency>
-        <!--当前项目需要在业务逻辑层实现类中实现业务逻辑层接口-->
+        <!--  当前项目需要在业务逻辑层实现类中实现业务逻辑层接口
+           所以业务逻辑层接口的依赖也要添加(依赖csmall-stock-service)-->
         <dependency>
             <groupId>cn.tedu</groupId>
             <artifactId>csmall-stock-service</artifactId>
@@ -75,9 +76,20 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+        <!--  Sentinel 整合SpringCloud依赖  -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!--   SpringBoot 整合 Quartz 依赖   -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+        <!--   RabbitMQ的依赖   -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
     </dependencies>
 

@@ -9,13 +9,11 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 @RequestMapping("/base/stock")
 @Api(tags = "库存管理模块")
@@ -24,13 +22,15 @@ public class StockController {
     @Autowired
     private IStockService stockService;
 
-    public StockController(){
-        log.debug("创建控制类：StockController");
-    }
-
     @PostMapping("/reduce/count")
     @ApiOperation("减少库存数")
-    @SentinelResource(value = "减少库存数",blockHandler = "blockError",fallback = "fallbackError")
+    // @SentinelResource注解需要标记在控制层方法上,在该方法第一次运行后,会被Sentinel仪表台检测
+    // 该方法在运行前,不会出现在仪表台中
+    // 括号中"减少库存数"这个描述会出现在仪表台上,代表这个方法
+    // blockHandler可以设置当前控制器方法被限流时,要运行的自定义限流方法,blockError就是方法名称
+    @SentinelResource(  value = "减少库存数",
+            blockHandler = "blockError",
+            fallback = "fallbackError")
     public JsonResult reduceCommodityCount(StockReduceCountDTO stockReduceCountDTO){
         // 调用业务逻辑层
         stockService.reduceCommodityCount(stockReduceCountDTO);
@@ -71,5 +71,10 @@ public class StockController {
         // 返回降级方法运行的信息
         return JsonResult.failed(ResponseCode.INTERNAL_SERVER_ERROR,"服务降级");
     }
-
 }
+
+
+
+
+
+

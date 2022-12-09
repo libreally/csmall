@@ -12,12 +12,12 @@
     <artifactId>csmall-stock-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>csmall-stock-service</name>
-    <description>csmall-stock-service</description>
-<dependencies>
-    <dependency>
-        <groupId>cn.tedu</groupId>
-        <artifactId>csmall-commons</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-</dependencies>
+    <description>Demo project for Spring Boot</description>
+    <dependencies>
+        <dependency>
+            <groupId>cn.tedu</groupId>
+            <artifactId>csmall-commons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

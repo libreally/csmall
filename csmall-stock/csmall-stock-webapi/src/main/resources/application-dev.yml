@@ -1,31 +1,54 @@
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # 设置虚拟host,单机模式时固定编写 "/" 即可
+    virtual-host: /
+  datasource:
+    url: jdbc:mysql://localhost:3306/csmall_db?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: root
   application:
     name: nacos-stock # 定义当前服务名称
   cloud:
     sentinel:
       transport:
+        # 配置sentinel提供的仪表台服务器的位置
         dashboard: localhost:8080
-        #限流端口号，每个项目端口号必须不同
-        port: 8021
+        # 执行限流的端口号,每个项目必须设置不同的端口号,例如cart模块要限流就可以设置为8722
+        port: 8721
     nacos:
       discovery:
         server-addr: localhost:8848 # 指定正在运行的Nacos服务器的位置
-  datasource:
-    url: jdbc:mysql://localhost:3306/csmall_db?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
-    username: root
-    password: root
 dubbo:
   protocol:
+    # port设置为-1 表示当前dubbo框架使用自动寻找端口的功能
+    # 生成端口的规则是从20880开始寻找可用端口,如果当前端口号占用,就尝试+1,直到找到可用端口为止
     port: -1
+    # 设置连接的名称,一般固定为dubbo即可
     name: dubbo
   registry:
+    # 指定当前项目dubbo注册中心的类型和位置
     address: nacos://localhost:8848
   consumer:
+    # 设置当前项目启动时,是否检查本项目需要的所有服务都可用
+    # 设置它的值为false,表示不检查,以减少启动时因为需要的服务不可用导致的错误
     check: false
 seata:
+  # 定义事务的分组,一般是以项目为单位的,不同项目用它来区分
   tx-service-group: csmall_group
   service:
     vgroup-mapping:
+      # 设置csmall_group分组使用默认(default)的seata配置
       csmall_group: default
     grouplist:
+      # 设置seata的ip和端口号位置
       default: localhost:8091
+
+
+
+
+
+

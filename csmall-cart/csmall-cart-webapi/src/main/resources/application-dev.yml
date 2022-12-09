@@ -1,4 +1,8 @@
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: csmall
   application:
     name: nacos-cart # 定义当前服务名称
   cloud:

@@ -3,6 +3,7 @@ package cn.tedu.csmall.order.webapi.controller;
 
 import cn.tedu.csmall.commons.pojo.order.dto.OrderAddDTO;
 import cn.tedu.csmall.commons.pojo.order.model.Order;
+import cn.tedu.csmall.commons.restful.JsonPage;
 import cn.tedu.csmall.commons.restful.JsonResult;
 import cn.tedu.csmall.order.service.IOrderService;
 import cn.tedu.csmall.order.webapi.service.impl.OrderServiceImpl;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/base/order")
 public class OrderController {
     @Autowired
-    private OrderServiceImpl orderService;
+    private IOrderService orderService;
 
     public OrderController() {
         log.debug("创建控制类：CartController");
@@ -41,9 +42,9 @@ public class OrderController {
             @ApiImplicitParam(value = "页码",name = "page",example = "1"),
             @ApiImplicitParam(value = "每页条数",name = "pageSize",example = "10")
     })
-    public JsonResult<PageInfo<Order>> pageOrder(Integer page ,Integer pageSize){
-        PageInfo<Order> pageInfo = orderService.getAllOrdersByPage(page, pageSize);
-        return JsonResult.ok("查询完成",pageInfo);
+    public JsonResult<JsonPage<Order>> pageOrder(Integer page ,Integer pageSize){
+        JsonPage<Order> jsonPage = orderService.getAllOrdersByPage(page, pageSize);
+        return JsonResult.ok("查询完成",jsonPage);
     }
 
 }

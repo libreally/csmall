@@ -5,6 +5,7 @@ import cn.tedu.csmall.commons.exception.CoolSharkServiceException;
 import cn.tedu.csmall.commons.pojo.order.dto.OrderAddDTO;
 import cn.tedu.csmall.commons.pojo.order.model.Order;
 import cn.tedu.csmall.commons.pojo.stock.dto.StockReduceCountDTO;
+import cn.tedu.csmall.commons.restful.JsonPage;
 import cn.tedu.csmall.commons.restful.ResponseCode;
 import cn.tedu.csmall.order.service.IOrderService;
 import cn.tedu.csmall.order.webapi.mapper.OrderMapper;
@@ -61,7 +62,7 @@ public class OrderServiceImpl implements IOrderService {
     }
     // 分页查询所有订单信息的方法
     // page是页码,pageSize是每页条数
-    public PageInfo<Order> getAllOrdersByPage(Integer page,Integer pageSize){
+    public JsonPage<Order> getAllOrdersByPage(Integer page, Integer pageSize){
         // PageHelper框架实现分页功能的核心代码,是要在执行查询数据库代码运行前
         // 编写PageHelper.startPage(page,pageSize)方法,设置分页的查询条件
         // page是页码从1开始,表示第一页
@@ -72,8 +73,8 @@ public class OrderServiceImpl implements IOrderService {
         // 查询结果list只包含查询到的分页数据,并不能包含分页信息(总页数,总条数,有没有上一页下一页等)
         // 所以我们要利用PageHelper提供的PageInfo类型对象来进行返回
         // PageInfo对象既可以包含分页数据,又可以包含分页信息,且是自动计算的
-        // 使用方式是在返回时直接实例化即可,构造方法()中直接传入查询到的数据list即可
-        return new PageInfo<>(list);
+        // 使用方式是在返回时直接实例化即可,构造方法()中直接传入查询到的数据list即
+        return JsonPage.restPage(new PageInfo<>(list));
 
     }
 }
